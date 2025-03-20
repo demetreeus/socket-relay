@@ -1,0 +1,21 @@
+{
+    "name": "lot-bidding-system",
+    "version": "1.0.0",
+    "description": "Real-time lot bidding system using Koa and Socket.IO",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js",
+        "dev": "nodemon app.js"
+    },
+    "dependencies": {
+        "@koa/cors": "^5.0.0",
+        "koa": "^2.14.2",
+        "koa-bodyparser": "^4.4.1",
+        "koa-router": "^12.0.1",
+        "koa-static": "^5.0.0",
+        "socket.io": "^4.7.2"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.1"
+    }
+}
