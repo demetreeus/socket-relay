@@ -1,11 +1,13 @@
 const Koa = require('koa');
 const http = require('http');
 const socketIO = require('socket.io');
+const { instrument } = require("@socket.io/admin-ui");
 const serve = require('koa-static');
 const path = require('path');
 const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser');
 const cors = require('@koa/cors');
+const send = require('koa-send'); // Add this import
 
 // Initialize Koa app
 const app = new Koa();
@@ -53,6 +55,21 @@ io.on('connection', (socket) => {
   });
 });
 
+// Set up the admin UI
+instrument(io, {
+  auth: {
+    type: "basic",
+    username: "excelsior",
+    password: "$2b$10$heqvAkYMez.Va6Et2uXInOnkCT6/uQj1brkrbyG3LpopDklcq7ZOS" // "changeit" encrypted
+  },
+  namespaceName: "/monitor" // This sets a custom namespace for admin features
+});
+
+// Add a route for your admin panel
+router.get('/monitor', async (ctx) => {
+  await send(ctx, 'admin.html', { root: __dirname + '/public' });
+});
+
 // POST endpoint to receive bid data
 router.post('/api/lotUpdate', async (ctx) => {
   try {
@@ -68,8 +85,6 @@ router.post('/api/lotUpdate', async (ctx) => {
     // Create message object
     const message = {
       lot_id: parseInt(lot_id),
-      price: parseInt(price),
-      winner: parseInt(user),
       timestamp: new Date().toISOString()
     };
     

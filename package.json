@@ -9,9 +9,11 @@
     },
     "dependencies": {
         "@koa/cors": "^5.0.0",
+        "@socket.io/admin-ui": "^0.5.1",
         "koa": "^2.14.2",
         "koa-bodyparser": "^4.4.1",
         "koa-router": "^12.0.1",
+        "koa-send": "^5.0.1",
         "koa-static": "^5.0.0",
         "socket.io": "^4.7.2"
     },

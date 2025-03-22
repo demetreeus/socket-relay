@@ -49,23 +49,18 @@ submitButton.addEventListener('click', () => {
   
   // Create message object
   const message = {
-    lot_id: lotId,
-    price: price,
-    winner: userId,
-    timestamp: new Date().toLocaleTimeString()
+    "lot_id": lotId
   };
   
+  console.log(message);
+
   // Send message to server via POST request
-  fetch('/api/bid', {
+  fetch('/api/lotUpdate', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      lot_id: lotId,
-      price: price,
-      user: userId
-    }),
+    body: JSON.stringify(message),
   })
   .then(response => response.json())
   .then(data => {
@@ -99,9 +94,7 @@ function displayMessage(data) {
     }
   } else {
     content = `
-      <strong>Lot ID:</strong> ${data.lot_id} | 
-      <strong>Price:</strong> $${data.price} | 
-      <strong>Winner:</strong> ${data.winner}
+      <strong>Lot ID:</strong> ${data.lot_id}
     `;
     if (data.timestamp) {
       content += ` | <strong>Time:</strong> ${data.timestamp}`;

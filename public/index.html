@@ -87,7 +87,6 @@
   
   <div class="tabs">
     <div class="tab active" data-tab="client-form">Client Form</div>
-    <div class="tab" data-tab="api-info">API Information</div>
   </div>
   
   <div id="client-form" class="tab-content active">
@@ -108,39 +107,6 @@
     </div>
     
     <button id="submit-bid">Submit Bid</button>
-  </div>
-  
-  <div id="api-info" class="tab-content">
-    <h2>API Information</h2>
-    <p>You can submit bids using the following API endpoint:</p>
-    
-    <h3>POST /api/bid</h3>
-    <p>Request Body:</p>
-    <div class="code-block">{
-  "lot_id": 9000,
-  "price": 250,
-  "user": 1048
-}</div>
-    
-    <p>Example using cURL:</p>
-    <div class="code-block">curl -X POST http://localhost:3000/api/bid \
-  -H "Content-Type: application/json" \
-  -d '{"lot_id": 9000, "price": 250, "user": 1048}'</div>
-    
-    <p>Example using JavaScript fetch:</p>
-    <div class="code-block">fetch('http://localhost:3000/api/bid', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    lot_id: 9000,
-    price: 250,
-    user: 1048
-  }),
-})
-.then(response => response.json())
-.then(data => console.log(data));</div>
   </div>
   
   <script src="/socket.io/socket.io.js"></script>
